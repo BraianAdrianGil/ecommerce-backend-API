@@ -28,7 +28,7 @@ const getAll = catchError(async (req, res) => {
     filters.categoryId = category;
   }
   const results = await Product.findAll({
-    include: [Category, Image],
+    include: [{ model: Category }, { model: Image, order: [["id", "ASC"]] }],
     where: filters,
   });
 
